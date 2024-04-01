@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+// Author: Hoplin
+
+message Axis{
+    float latitude = 1;
+    float longtitude = 2;
+}
+
+enum DayOfWeek {
+    DAY_OF_WEEK_MONDAY = 0;
+    DAY_OF_WEEK_TUESDAY = 1;
+    DAY_OF_WEEK_WEDNESDAY = 2;
+    DAY_OF_WEEK_THURSDAY = 3;
+    DAY_OF_WEEK_FIRDAY = 4;
+    DAY_OF_WEEK_SATURDAY = 5;
+    DAY_OF_WEEK_SUNDAY = 6;
+}
+
+message Cafe{
+    Axis axis = 1;
+    string name = 2;
+    map<string,uint32> menus = 3;
+    DayOfWeek day = 4;
+}
