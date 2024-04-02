@@ -6,13 +6,19 @@
 
 ---
 
-## 1. Compile `.proto` to Golang
+## 1. Install dependencies
+
+```bash
+go mod download
+```
+
+## 2. Compile `.proto` to Golang
 
 ```bash
 make build
 ```
 
-## 2. Compile `main.go`
+## 3. Compile `main.go`
 
 ```bash
 make generate
