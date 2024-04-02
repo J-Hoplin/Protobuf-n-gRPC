@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package example.dummy;
+
+option go_package = "./protoexample";
+
+
+message Dummy {
+    uint32 id = 1;
+    
+}
