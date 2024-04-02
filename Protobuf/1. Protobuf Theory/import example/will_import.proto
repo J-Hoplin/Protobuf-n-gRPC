@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+import "will_be_imported.proto";
+
+message UseImportedMessage{
+    NeedToBeImported field = 1;
+}
+
