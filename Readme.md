@@ -24,7 +24,9 @@
 
    6. [Protocol Buffer Import](./Protobuf/1.%20Protobuf%20Theory/6.%20Protocol%20Buffer%20Import.md)
 
-   7. [7. Advanced - What if schema changes?](./Protobuf/1.%20Protobuf%20Theory/7.%20Advanced%20-%20What%20if%20schema%20changes.md)
+   7. [Advanced - What if schema changes?](./Protobuf/1.%20Protobuf%20Theory/7.%20Advanced%20-%20What%20if%20schema%20changes.md)
+
+   8. [Protocol Buffer Service](./Protobuf/1.%20Protobuf%20Theory/8.%20Protocol%20Buffer%20Service.md)
 
 2. [Protocol Buffer Excersice](./Protobuf/2.%20Protobuf%20Excercise/)
 
