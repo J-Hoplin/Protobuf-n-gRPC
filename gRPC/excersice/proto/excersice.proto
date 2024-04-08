@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package excersice;
+
+option go_package = "excersice/excersice/proto";
+
+// Unary Communication: Sum two numbers
+message UnarySumReqest{
+  int32 num1 = 1;
+  int32 num2 = 2;
+}
+
+message UnarySumResponse{
+  int32 result = 1;
+}
+
+service ExcersiceService{
+  rpc UnarySum (UnarySumReqest) returns (UnarySumResponse);
+}
