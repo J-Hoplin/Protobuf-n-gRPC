@@ -23,6 +23,9 @@ func main() {
 	c := pb.NewExcersiceServiceClient(conn)
 
 	// Invoke Unary Sum
-	InvokeBidrectionalStream(c)
 
+	//InvokeUnarySum(c)
+	//InvokeClientStream(c)
+	//InvokeServerStream(c)
+	InvokeBidrectionalStream(c)
 }

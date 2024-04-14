@@ -34,6 +34,47 @@
 
 ## gRPC Excersice
 
+### Change client commands
+
+Remove/Add annotation in `excersice/client/main.go`, which service you want to try with.
+
+```go
+func main() {
+
+   ...
+
+
+	// Invoke Unary Sum
+
+	//InvokeUnarySum(c)
+	//InvokeClientStream(c)
+	//InvokeServerStream(c)
+	InvokeBidrectionalStream(c)
+}
+```
+
+**You need to execute after compile each time you modify main.go**
+
+### Compile and execute
+
+1. Compile proto and rpc services
+
+```bash
+cd excersice
+
+make excersice
+```
+
+2. Prepare 2 terminal session and execute server, client each
+
+```bash
+# session 1
+./bin/excersice/server
+
+# session 2
+./bin/excersice/client
+```
+
 - Unary Communication
 - Client streaming
 - Server streaming
