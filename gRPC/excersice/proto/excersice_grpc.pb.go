@@ -25,6 +25,7 @@ type ExcersiceServiceClient interface {
 	UnarySum(ctx context.Context, in *UnarySumReqest, opts ...grpc.CallOption) (*UnarySumResponse, error)
 	ServerStreamPrimeNumber(ctx context.Context, in *ServerStreamRequest, opts ...grpc.CallOption) (ExcersiceService_ServerStreamPrimeNumberClient, error)
 	ClientStreamAvg(ctx context.Context, opts ...grpc.CallOption) (ExcersiceService_ClientStreamAvgClient, error)
+	BiDirectionalStreamAvg(ctx context.Context, opts ...grpc.CallOption) (ExcersiceService_BiDirectionalStreamAvgClient, error)
 }
 
 type excersiceServiceClient struct {
@@ -110,6 +111,37 @@ func (x *excersiceServiceClientStreamAvgClient) CloseAndRecv() (*ClientStreamRes
 	return m, nil
 }
 
+func (c *excersiceServiceClient) BiDirectionalStreamAvg(ctx context.Context, opts ...grpc.CallOption) (ExcersiceService_BiDirectionalStreamAvgClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ExcersiceService_ServiceDesc.Streams[2], "/excersice.ExcersiceService/BiDirectionalStreamAvg", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &excersiceServiceBiDirectionalStreamAvgClient{stream}
+	return x, nil
+}
+
+type ExcersiceService_BiDirectionalStreamAvgClient interface {
+	Send(*BidirectionalRequest) error
+	Recv() (*BidirectionalResponse, error)
+	grpc.ClientStream
+}
+
+type excersiceServiceBiDirectionalStreamAvgClient struct {
+	grpc.ClientStream
+}
+
+func (x *excersiceServiceBiDirectionalStreamAvgClient) Send(m *BidirectionalRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *excersiceServiceBiDirectionalStreamAvgClient) Recv() (*BidirectionalResponse, error) {
+	m := new(BidirectionalResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // ExcersiceServiceServer is the server API for ExcersiceService service.
 // All implementations must embed UnimplementedExcersiceServiceServer
 // for forward compatibility
@@ -117,6 +149,7 @@ type ExcersiceServiceServer interface {
 	UnarySum(context.Context, *UnarySumReqest) (*UnarySumResponse, error)
 	ServerStreamPrimeNumber(*ServerStreamRequest, ExcersiceService_ServerStreamPrimeNumberServer) error
 	ClientStreamAvg(ExcersiceService_ClientStreamAvgServer) error
+	BiDirectionalStreamAvg(ExcersiceService_BiDirectionalStreamAvgServer) error
 	mustEmbedUnimplementedExcersiceServiceServer()
 }
 
@@ -132,6 +165,9 @@ func (UnimplementedExcersiceServiceServer) ServerStreamPrimeNumber(*ServerStream
 }
 func (UnimplementedExcersiceServiceServer) ClientStreamAvg(ExcersiceService_ClientStreamAvgServer) error {
 	return status.Errorf(codes.Unimplemented, "method ClientStreamAvg not implemented")
+}
+func (UnimplementedExcersiceServiceServer) BiDirectionalStreamAvg(ExcersiceService_BiDirectionalStreamAvgServer) error {
+	return status.Errorf(codes.Unimplemented, "method BiDirectionalStreamAvg not implemented")
 }
 func (UnimplementedExcersiceServiceServer) mustEmbedUnimplementedExcersiceServiceServer() {}
 
@@ -211,6 +247,32 @@ func (x *excersiceServiceClientStreamAvgServer) Recv() (*ClientStreamRequest, er
 	return m, nil
 }
 
+func _ExcersiceService_BiDirectionalStreamAvg_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ExcersiceServiceServer).BiDirectionalStreamAvg(&excersiceServiceBiDirectionalStreamAvgServer{stream})
+}
+
+type ExcersiceService_BiDirectionalStreamAvgServer interface {
+	Send(*BidirectionalResponse) error
+	Recv() (*BidirectionalRequest, error)
+	grpc.ServerStream
+}
+
+type excersiceServiceBiDirectionalStreamAvgServer struct {
+	grpc.ServerStream
+}
+
+func (x *excersiceServiceBiDirectionalStreamAvgServer) Send(m *BidirectionalResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *excersiceServiceBiDirectionalStreamAvgServer) Recv() (*BidirectionalRequest, error) {
+	m := new(BidirectionalRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // ExcersiceService_ServiceDesc is the grpc.ServiceDesc for ExcersiceService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -232,6 +294,12 @@ var ExcersiceService_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "ClientStreamAvg",
 			Handler:       _ExcersiceService_ClientStreamAvg_Handler,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "BiDirectionalStreamAvg",
+			Handler:       _ExcersiceService_BiDirectionalStreamAvg_Handler,
+			ServerStreams: true,
 			ClientStreams: true,
 		},
 	},
