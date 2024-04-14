@@ -14,6 +14,26 @@ message UnarySumResponse{
   int32 result = 1;
 }
 
+// Serverside Streaming:
+message ServerStreamRequest{
+  int32 num = 1;
+}
+
+message ServerStreamResponse{
+  int32 primeDecomposition = 1;
+}
+
+// Clientside Streaming;
+message ClientStreamRequest{
+  int32 num = 1;
+}
+
+message ClientStreamResponse{
+  int32 avg =  1;
+}
+
 service ExcersiceService{
   rpc UnarySum (UnarySumReqest) returns (UnarySumResponse);
+  rpc ServerStreamPrimeNumber (ServerStreamRequest) returns (stream ServerStreamResponse);
+  rpc ClientStreamAvg (stream ClientStreamRequest) returns (ClientStreamResponse);
 }

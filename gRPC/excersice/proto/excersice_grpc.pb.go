@@ -23,6 +23,8 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ExcersiceServiceClient interface {
 	UnarySum(ctx context.Context, in *UnarySumReqest, opts ...grpc.CallOption) (*UnarySumResponse, error)
+	ServerStreamPrimeNumber(ctx context.Context, in *ServerStreamRequest, opts ...grpc.CallOption) (ExcersiceService_ServerStreamPrimeNumberClient, error)
+	ClientStreamAvg(ctx context.Context, opts ...grpc.CallOption) (ExcersiceService_ClientStreamAvgClient, error)
 }
 
 type excersiceServiceClient struct {
@@ -42,11 +44,79 @@ func (c *excersiceServiceClient) UnarySum(ctx context.Context, in *UnarySumReqes
 	return out, nil
 }
 
+func (c *excersiceServiceClient) ServerStreamPrimeNumber(ctx context.Context, in *ServerStreamRequest, opts ...grpc.CallOption) (ExcersiceService_ServerStreamPrimeNumberClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ExcersiceService_ServiceDesc.Streams[0], "/excersice.ExcersiceService/ServerStreamPrimeNumber", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &excersiceServiceServerStreamPrimeNumberClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type ExcersiceService_ServerStreamPrimeNumberClient interface {
+	Recv() (*ServerStreamResponse, error)
+	grpc.ClientStream
+}
+
+type excersiceServiceServerStreamPrimeNumberClient struct {
+	grpc.ClientStream
+}
+
+func (x *excersiceServiceServerStreamPrimeNumberClient) Recv() (*ServerStreamResponse, error) {
+	m := new(ServerStreamResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *excersiceServiceClient) ClientStreamAvg(ctx context.Context, opts ...grpc.CallOption) (ExcersiceService_ClientStreamAvgClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ExcersiceService_ServiceDesc.Streams[1], "/excersice.ExcersiceService/ClientStreamAvg", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &excersiceServiceClientStreamAvgClient{stream}
+	return x, nil
+}
+
+type ExcersiceService_ClientStreamAvgClient interface {
+	Send(*ClientStreamRequest) error
+	CloseAndRecv() (*ClientStreamResponse, error)
+	grpc.ClientStream
+}
+
+type excersiceServiceClientStreamAvgClient struct {
+	grpc.ClientStream
+}
+
+func (x *excersiceServiceClientStreamAvgClient) Send(m *ClientStreamRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *excersiceServiceClientStreamAvgClient) CloseAndRecv() (*ClientStreamResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(ClientStreamResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // ExcersiceServiceServer is the server API for ExcersiceService service.
 // All implementations must embed UnimplementedExcersiceServiceServer
 // for forward compatibility
 type ExcersiceServiceServer interface {
 	UnarySum(context.Context, *UnarySumReqest) (*UnarySumResponse, error)
+	ServerStreamPrimeNumber(*ServerStreamRequest, ExcersiceService_ServerStreamPrimeNumberServer) error
+	ClientStreamAvg(ExcersiceService_ClientStreamAvgServer) error
 	mustEmbedUnimplementedExcersiceServiceServer()
 }
 
@@ -56,6 +126,12 @@ type UnimplementedExcersiceServiceServer struct {
 
 func (UnimplementedExcersiceServiceServer) UnarySum(context.Context, *UnarySumReqest) (*UnarySumResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnarySum not implemented")
+}
+func (UnimplementedExcersiceServiceServer) ServerStreamPrimeNumber(*ServerStreamRequest, ExcersiceService_ServerStreamPrimeNumberServer) error {
+	return status.Errorf(codes.Unimplemented, "method ServerStreamPrimeNumber not implemented")
+}
+func (UnimplementedExcersiceServiceServer) ClientStreamAvg(ExcersiceService_ClientStreamAvgServer) error {
+	return status.Errorf(codes.Unimplemented, "method ClientStreamAvg not implemented")
 }
 func (UnimplementedExcersiceServiceServer) mustEmbedUnimplementedExcersiceServiceServer() {}
 
@@ -88,6 +164,53 @@ func _ExcersiceService_UnarySum_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ExcersiceService_ServerStreamPrimeNumber_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ServerStreamRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(ExcersiceServiceServer).ServerStreamPrimeNumber(m, &excersiceServiceServerStreamPrimeNumberServer{stream})
+}
+
+type ExcersiceService_ServerStreamPrimeNumberServer interface {
+	Send(*ServerStreamResponse) error
+	grpc.ServerStream
+}
+
+type excersiceServiceServerStreamPrimeNumberServer struct {
+	grpc.ServerStream
+}
+
+func (x *excersiceServiceServerStreamPrimeNumberServer) Send(m *ServerStreamResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _ExcersiceService_ClientStreamAvg_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ExcersiceServiceServer).ClientStreamAvg(&excersiceServiceClientStreamAvgServer{stream})
+}
+
+type ExcersiceService_ClientStreamAvgServer interface {
+	SendAndClose(*ClientStreamResponse) error
+	Recv() (*ClientStreamRequest, error)
+	grpc.ServerStream
+}
+
+type excersiceServiceClientStreamAvgServer struct {
+	grpc.ServerStream
+}
+
+func (x *excersiceServiceClientStreamAvgServer) SendAndClose(m *ClientStreamResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *excersiceServiceClientStreamAvgServer) Recv() (*ClientStreamRequest, error) {
+	m := new(ClientStreamRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // ExcersiceService_ServiceDesc is the grpc.ServiceDesc for ExcersiceService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -100,6 +223,17 @@ var ExcersiceService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ExcersiceService_UnarySum_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "ServerStreamPrimeNumber",
+			Handler:       _ExcersiceService_ServerStreamPrimeNumber_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "ClientStreamAvg",
+			Handler:       _ExcersiceService_ClientStreamAvg_Handler,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "excersice.proto",
 }
