@@ -123,6 +123,291 @@ func (x *UnarySumResponse) GetResult() int32 {
 	return 0
 }
 
+// Serverside Streaming:
+type ServerStreamRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Num int32 `protobuf:"varint,1,opt,name=num,proto3" json:"num,omitempty"`
+}
+
+func (x *ServerStreamRequest) Reset() {
+	*x = ServerStreamRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_excersice_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ServerStreamRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ServerStreamRequest) ProtoMessage() {}
+
+func (x *ServerStreamRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_excersice_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ServerStreamRequest.ProtoReflect.Descriptor instead.
+func (*ServerStreamRequest) Descriptor() ([]byte, []int) {
+	return file_excersice_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ServerStreamRequest) GetNum() int32 {
+	if x != nil {
+		return x.Num
+	}
+	return 0
+}
+
+type ServerStreamResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	PrimeDecomposition int32 `protobuf:"varint,1,opt,name=primeDecomposition,proto3" json:"primeDecomposition,omitempty"`
+}
+
+func (x *ServerStreamResponse) Reset() {
+	*x = ServerStreamResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_excersice_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ServerStreamResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ServerStreamResponse) ProtoMessage() {}
+
+func (x *ServerStreamResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_excersice_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ServerStreamResponse.ProtoReflect.Descriptor instead.
+func (*ServerStreamResponse) Descriptor() ([]byte, []int) {
+	return file_excersice_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *ServerStreamResponse) GetPrimeDecomposition() int32 {
+	if x != nil {
+		return x.PrimeDecomposition
+	}
+	return 0
+}
+
+// Clientside Streaming
+type ClientStreamRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Num int32 `protobuf:"varint,1,opt,name=num,proto3" json:"num,omitempty"`
+}
+
+func (x *ClientStreamRequest) Reset() {
+	*x = ClientStreamRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_excersice_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ClientStreamRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ClientStreamRequest) ProtoMessage() {}
+
+func (x *ClientStreamRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_excersice_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ClientStreamRequest.ProtoReflect.Descriptor instead.
+func (*ClientStreamRequest) Descriptor() ([]byte, []int) {
+	return file_excersice_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *ClientStreamRequest) GetNum() int32 {
+	if x != nil {
+		return x.Num
+	}
+	return 0
+}
+
+type ClientStreamResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Avg int32 `protobuf:"varint,1,opt,name=avg,proto3" json:"avg,omitempty"`
+}
+
+func (x *ClientStreamResponse) Reset() {
+	*x = ClientStreamResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_excersice_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ClientStreamResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ClientStreamResponse) ProtoMessage() {}
+
+func (x *ClientStreamResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_excersice_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ClientStreamResponse.ProtoReflect.Descriptor instead.
+func (*ClientStreamResponse) Descriptor() ([]byte, []int) {
+	return file_excersice_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *ClientStreamResponse) GetAvg() int32 {
+	if x != nil {
+		return x.Avg
+	}
+	return 0
+}
+
+// BiDirectional Streaming
+type BidirectionalRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Num int32 `protobuf:"varint,1,opt,name=num,proto3" json:"num,omitempty"`
+}
+
+func (x *BidirectionalRequest) Reset() {
+	*x = BidirectionalRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_excersice_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BidirectionalRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BidirectionalRequest) ProtoMessage() {}
+
+func (x *BidirectionalRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_excersice_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BidirectionalRequest.ProtoReflect.Descriptor instead.
+func (*BidirectionalRequest) Descriptor() ([]byte, []int) {
+	return file_excersice_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *BidirectionalRequest) GetNum() int32 {
+	if x != nil {
+		return x.Num
+	}
+	return 0
+}
+
+type BidirectionalResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	MaximumNumber int32 `protobuf:"varint,1,opt,name=maximumNumber,proto3" json:"maximumNumber,omitempty"`
+}
+
+func (x *BidirectionalResponse) Reset() {
+	*x = BidirectionalResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_excersice_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BidirectionalResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BidirectionalResponse) ProtoMessage() {}
+
+func (x *BidirectionalResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_excersice_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BidirectionalResponse.ProtoReflect.Descriptor instead.
+func (*BidirectionalResponse) Descriptor() ([]byte, []int) {
+	return file_excersice_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *BidirectionalResponse) GetMaximumNumber() int32 {
+	if x != nil {
+		return x.MaximumNumber
+	}
+	return 0
+}
+
 var File_excersice_proto protoreflect.FileDescriptor
 
 var file_excersice_proto_rawDesc = []byte{
@@ -134,14 +419,51 @@ var file_excersice_proto_rawDesc = []byte{
 	0x52, 0x04, 0x6e, 0x75, 0x6d, 0x32, 0x22, 0x2a, 0x0a, 0x10, 0x55, 0x6e, 0x61, 0x72, 0x79, 0x53,
 	0x75, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x72, 0x65,
 	0x73, 0x75, 0x6c, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x06, 0x72, 0x65, 0x73, 0x75,
-	0x6c, 0x74, 0x32, 0x56, 0x0a, 0x10, 0x45, 0x78, 0x63, 0x65, 0x72, 0x73, 0x69, 0x63, 0x65, 0x53,
-	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x42, 0x0a, 0x08, 0x55, 0x6e, 0x61, 0x72, 0x79, 0x53,
-	0x75, 0x6d, 0x12, 0x19, 0x2e, 0x65, 0x78, 0x63, 0x65, 0x72, 0x73, 0x69, 0x63, 0x65, 0x2e, 0x55,
-	0x6e, 0x61, 0x72, 0x79, 0x53, 0x75, 0x6d, 0x52, 0x65, 0x71, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e,
-	0x65, 0x78, 0x63, 0x65, 0x72, 0x73, 0x69, 0x63, 0x65, 0x2e, 0x55, 0x6e, 0x61, 0x72, 0x79, 0x53,
-	0x75, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x1b, 0x5a, 0x19, 0x65, 0x78,
-	0x63, 0x65, 0x72, 0x73, 0x69, 0x63, 0x65, 0x2f, 0x65, 0x78, 0x63, 0x65, 0x72, 0x73, 0x69, 0x63,
-	0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6c, 0x74, 0x22, 0x27, 0x0a, 0x13, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x74, 0x72, 0x65,
+	0x61, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x6e, 0x75, 0x6d,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x03, 0x6e, 0x75, 0x6d, 0x22, 0x46, 0x0a, 0x14, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x2e, 0x0a, 0x12, 0x70, 0x72, 0x69, 0x6d, 0x65, 0x44, 0x65, 0x63, 0x6f,
+	0x6d, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52,
+	0x12, 0x70, 0x72, 0x69, 0x6d, 0x65, 0x44, 0x65, 0x63, 0x6f, 0x6d, 0x70, 0x6f, 0x73, 0x69, 0x74,
+	0x69, 0x6f, 0x6e, 0x22, 0x27, 0x0a, 0x13, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x53, 0x74, 0x72,
+	0x65, 0x61, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x6e, 0x75,
+	0x6d, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x03, 0x6e, 0x75, 0x6d, 0x22, 0x28, 0x0a, 0x14,
+	0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x76, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x05, 0x52, 0x03, 0x61, 0x76, 0x67, 0x22, 0x28, 0x0a, 0x14, 0x42, 0x69, 0x64, 0x69, 0x72, 0x65,
+	0x63, 0x74, 0x69, 0x6f, 0x6e, 0x61, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10,
+	0x0a, 0x03, 0x6e, 0x75, 0x6d, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x03, 0x6e, 0x75, 0x6d,
+	0x22, 0x3d, 0x0a, 0x15, 0x42, 0x69, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x61,
+	0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x24, 0x0a, 0x0d, 0x6d, 0x61, 0x78,
+	0x69, 0x6d, 0x75, 0x6d, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05,
+	0x52, 0x0d, 0x6d, 0x61, 0x78, 0x69, 0x6d, 0x75, 0x6d, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x32,
+	0xeb, 0x02, 0x0a, 0x10, 0x45, 0x78, 0x63, 0x65, 0x72, 0x73, 0x69, 0x63, 0x65, 0x53, 0x65, 0x72,
+	0x76, 0x69, 0x63, 0x65, 0x12, 0x42, 0x0a, 0x08, 0x55, 0x6e, 0x61, 0x72, 0x79, 0x53, 0x75, 0x6d,
+	0x12, 0x19, 0x2e, 0x65, 0x78, 0x63, 0x65, 0x72, 0x73, 0x69, 0x63, 0x65, 0x2e, 0x55, 0x6e, 0x61,
+	0x72, 0x79, 0x53, 0x75, 0x6d, 0x52, 0x65, 0x71, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x65, 0x78,
+	0x63, 0x65, 0x72, 0x73, 0x69, 0x63, 0x65, 0x2e, 0x55, 0x6e, 0x61, 0x72, 0x79, 0x53, 0x75, 0x6d,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5c, 0x0a, 0x17, 0x53, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x50, 0x72, 0x69, 0x6d, 0x65, 0x4e, 0x75, 0x6d,
+	0x62, 0x65, 0x72, 0x12, 0x1e, 0x2e, 0x65, 0x78, 0x63, 0x65, 0x72, 0x73, 0x69, 0x63, 0x65, 0x2e,
+	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x1f, 0x2e, 0x65, 0x78, 0x63, 0x65, 0x72, 0x73, 0x69, 0x63, 0x65, 0x2e,
+	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x30, 0x01, 0x12, 0x54, 0x0a, 0x0f, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74,
+	0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x41, 0x76, 0x67, 0x12, 0x1e, 0x2e, 0x65, 0x78, 0x63, 0x65,
+	0x72, 0x73, 0x69, 0x63, 0x65, 0x2e, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x53, 0x74, 0x72, 0x65,
+	0x61, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1f, 0x2e, 0x65, 0x78, 0x63, 0x65,
+	0x72, 0x73, 0x69, 0x63, 0x65, 0x2e, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x53, 0x74, 0x72, 0x65,
+	0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x28, 0x01, 0x12, 0x5f, 0x0a, 0x16,
+	0x42, 0x69, 0x44, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x61, 0x6c, 0x53, 0x74, 0x72,
+	0x65, 0x61, 0x6d, 0x41, 0x76, 0x67, 0x12, 0x1f, 0x2e, 0x65, 0x78, 0x63, 0x65, 0x72, 0x73, 0x69,
+	0x63, 0x65, 0x2e, 0x42, 0x69, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x61, 0x6c,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x20, 0x2e, 0x65, 0x78, 0x63, 0x65, 0x72, 0x73,
+	0x69, 0x63, 0x65, 0x2e, 0x42, 0x69, 0x64, 0x69, 0x72, 0x65, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x61,
+	0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x28, 0x01, 0x30, 0x01, 0x42, 0x1b, 0x5a,
+	0x19, 0x65, 0x78, 0x63, 0x65, 0x72, 0x73, 0x69, 0x63, 0x65, 0x2f, 0x65, 0x78, 0x63, 0x65, 0x72,
+	0x73, 0x69, 0x63, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x33,
 }
 
 var (
@@ -156,16 +478,28 @@ func file_excersice_proto_rawDescGZIP() []byte {
 	return file_excersice_proto_rawDescData
 }
 
-var file_excersice_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_excersice_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_excersice_proto_goTypes = []interface{}{
-	(*UnarySumReqest)(nil),   // 0: excersice.UnarySumReqest
-	(*UnarySumResponse)(nil), // 1: excersice.UnarySumResponse
+	(*UnarySumReqest)(nil),        // 0: excersice.UnarySumReqest
+	(*UnarySumResponse)(nil),      // 1: excersice.UnarySumResponse
+	(*ServerStreamRequest)(nil),   // 2: excersice.ServerStreamRequest
+	(*ServerStreamResponse)(nil),  // 3: excersice.ServerStreamResponse
+	(*ClientStreamRequest)(nil),   // 4: excersice.ClientStreamRequest
+	(*ClientStreamResponse)(nil),  // 5: excersice.ClientStreamResponse
+	(*BidirectionalRequest)(nil),  // 6: excersice.BidirectionalRequest
+	(*BidirectionalResponse)(nil), // 7: excersice.BidirectionalResponse
 }
 var file_excersice_proto_depIdxs = []int32{
 	0, // 0: excersice.ExcersiceService.UnarySum:input_type -> excersice.UnarySumReqest
-	1, // 1: excersice.ExcersiceService.UnarySum:output_type -> excersice.UnarySumResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	2, // 1: excersice.ExcersiceService.ServerStreamPrimeNumber:input_type -> excersice.ServerStreamRequest
+	4, // 2: excersice.ExcersiceService.ClientStreamAvg:input_type -> excersice.ClientStreamRequest
+	6, // 3: excersice.ExcersiceService.BiDirectionalStreamAvg:input_type -> excersice.BidirectionalRequest
+	1, // 4: excersice.ExcersiceService.UnarySum:output_type -> excersice.UnarySumResponse
+	3, // 5: excersice.ExcersiceService.ServerStreamPrimeNumber:output_type -> excersice.ServerStreamResponse
+	5, // 6: excersice.ExcersiceService.ClientStreamAvg:output_type -> excersice.ClientStreamResponse
+	7, // 7: excersice.ExcersiceService.BiDirectionalStreamAvg:output_type -> excersice.BidirectionalResponse
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -201,6 +535,78 @@ func file_excersice_proto_init() {
 				return nil
 			}
 		}
+		file_excersice_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ServerStreamRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_excersice_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ServerStreamResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_excersice_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ClientStreamRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_excersice_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ClientStreamResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_excersice_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BidirectionalRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_excersice_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BidirectionalResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -208,7 +614,7 @@ func file_excersice_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_excersice_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

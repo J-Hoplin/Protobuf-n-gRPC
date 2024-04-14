@@ -31,3 +31,10 @@
 2. [Protocol Buffer Excersice](./Protobuf/2.%20Protobuf%20Excercise/)
 
 3. [Protocol Buffer Golang](./Protobuf/3.%20Protobuf%20Golang/)
+
+## gRPC Excersice
+
+- Unary Communication
+- Client streaming
+- Server streaming
+- Bi-Directional stream
